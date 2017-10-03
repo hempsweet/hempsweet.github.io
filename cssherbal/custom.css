@@ -1,0 +1,79 @@
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #1c4e2a !important;
+    background: #fff !important;
+    font-weight: normal;
+     color: #000; 
+	 font-size:20px !important;
+}
+div#ui-id-2 {
+    height: auto !important;
+}
+#Top_bar #logo img {
+    vertical-align: middle;
+    /* max-height: 100%; */
+	height: 130px !important;
+}
+#Top_bar #logo, .header-fixed #Top_bar #logo, .header-plain #Top_bar #logo, .header-transparent #Top_bar #logo {
+    height: 46px !important;
+    line-height: 43px;
+    padding: 15px 0;
+}
+img.scale-with-grid.wp-post-image {
+    max-width: 100%;
+    height: 400px !important;
+}
+#Top_bar .menu>li ul {
+    background-color: #F2F2F2;
+    height: auto;
+}
+ul#menu-main-menu {
+    height: auto;
+}
+img.logo-sticky.scale-with-grid {
+    max-height: 46px !important;
+}
+#Top_bar #logo {
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    padding: 10px 0px !important;
+}
+.top_bar_left.clearfix {
+    max-height: 50px !important;
+}
+label {
+	color: #1c4e2a !important;
+    font-size: 35px !important;
+    line-height: 40px !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 15px !important;
+    font-family: "Caudex", Arial, Tahoma, sans-serif !important;
+}
+
+label, legend {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 400 !important;
+}
+.if-overlay .image_frame .image_wrapper .image_links.double {
+    display: none !important;
+    width: 120px;
+    margin-left: -60px;
+}
+.column.one.post-nav.minimal {
+    display: none !important;
+}
+a.fixed-nav.fixed-nav-prev {
+    display: none;
+}
+a.fixed-nav.fixed-nav-next {
+    display: none;
+}
+.top_bar_right_wrapper {
+    display: none;
+}
+#Subheader {
+    /* top: 60px; */
+	top:0px !important;
+    position: relative;
+}

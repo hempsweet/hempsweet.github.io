@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 "> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>Be</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- FONTS -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:100,300,400,400italic,700'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Patua+One:100,300,400,400italic,700'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:100,300,400,400italic,700,700italic'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Caudex:100,300,400,400italic,700,700italic'>
+
+    <!-- CSS -->
+    <link rel='stylesheet' href='css/global.css'>
+    <link rel='stylesheet' href='cssherbal/structure.css'>
+    <link rel='stylesheet' href='cssherbal/herbal.css'>
+    <link rel='stylesheet' href='cssherbal/custom.css'>
+	<link rel="stylesheet" href="cssherbal/jquery-ui.css">
+  <style>
+button.accordion {
+    background-color: rgba(232, 237, 230, 1);
+    color: #1c4e2a;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+	
+}
+button.accordion:hover:after {
+width:0;
+}
+button.accordion:after {
+    content: '\002B';
+    color: #1c4e2a;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+	opacity:1;
+	position: relative;
+	width:0;
+	height:0;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+	opacity:1;
+	position: relative;
+	width:0;
+	height:0;
+}
+
+div.pannel {
+    height:2000px;
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+--------------------------------------
+a
+{
+	text-decoration: none;
+	color: #111b47;
+}
+
+a:hover
+{
+	border-bottom: 1px dashed #ED971F;
+	color: #ED971F;
+}
+
+/**** slider ****/
+
+#slider, ul
+{
+	height: 200px;
+}
+
+#slider
+{
+	margin: auto;
+	overflow: hidden;
+	padding: 20px;
+	/* border: 1px solid rgba(0, 0, 0, 0.15); */
+	margin-top: 50px;
+	border-radius: 10px;
+	/* box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.25); */
+	position: relative;
+	width: 550px;
+}
+
+#slider li
+{
+	float: left;
+	position: relative;
+	width: 600px;
+	display: inline-block;
+	height: 200px;
+}
+
+#slider ul
+{
+	list-style: none;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 9000px;
+	transition: left .3s linear;
+	-moz-transition: left .3s linear;
+	-o-transition: left .3s linear;
+	-webkit-transition: left .3s linear;
+	margin-left: -25px;
+  font-family: century gothic;
+  color: #666;
+}
+
+/*** Content ***/
+
+.slider-container
+{
+	margin: 0 auto;
+	padding: 0;
+	width: 600px;
+  min-height: 180px;
+  border-bottom: 1px solid #e1e7de;
+}
+
+.slider-container h4
+{
+    text-align: center;
+ 	color: #1c4e2a;
+	font-family: "Caudex", Arial, Tahoma, sans-serif;
+  text-shadow: -1px 0px 0px rgba(0, 0, 0, 0.50);
+}
+
+.slider-container  p
+{
+	margin: 10px 25px;
+	font-weight: semi-bold;
+	line-height: 20px;
+	text-align: center;
+	color:#1c4e2a;
+	font-size: 15px;
+	
+}
+
+/*** target hooks ****/
+
+@-webkit-keyframes slide-animation {
+	0% {opacity:0;}
+	2% {opacity:1;}
+	20% {left:0px; opacity:1;}
+	22.5% {opacity:0.6;}
+	25% {left:-600px; opacity:1;}
+	45% {left:-600px; opacity:1;}
+	47.5% {opacity:0.6;}
+	50% {left:-1200px; opacity:1;}
+	70% {left:-1200px; opacity:1;}
+	72.5% {opacity:0.6;}
+	75% {left:-1800px; opacity:1;}
+	95% {opacity:1;}
+	98% {left:-1800px; opacity:0;} 
+	100% {left:0px; opacity:0;}
+}
+
+#slider ul
+{
+	-webkit-animation: slide-animation 25s infinite;
+}
+
+/* use to paused the content on mouse over */
+
+#slider ul:hover
+{
+	-moz-animation-play-state: paused;
+	-webkit-animation-play-state: paused;
+}
+
+
+
+</style>
+
+
+</head>
+
+<body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page color-custom style-simple layout-full-width nice-scroll-on button-flat if-overlay if-border-hide header-plain header-fw minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-center menuo-no-borders menuo-right mobile-tb-left mobile-mini-mr-ll mobile-header-mini">
+    <div id="Wrapper">
+        <div id="Header_wrapper">
+            <header id="Header">
+                <div class="header_placeholder"></div>
+                <div id="Top_bar">
+                    <div class="container">
+                        <div class="column one">
+                            <div class="top_bar_left clearfix">
+                                <div class="logo">
+                                    <a id="logo" href="index.html" title="BeHerbal - BeTheme"><img class="logo-main scale-with-grid" src="images/logohorizontal.png" alt="herbal" />
+									<img class="logo-sticky scale-with-grid" src="images/logohorizontal.png" alt="herbal" /><img class="logo-mobile scale-with-grid" src="images/logohorizontal.png" alt="herbal" />
+                                    </a>
+                                </div>
+                                <div class="menu_wrapper">
+                                    <nav id="menu" class="menu-main-menu-container">
+                                        <ul id="menu-main-menu" class="menu">
+                                            <li>
+                                                <a href="index.html"><span>Home</span></a>
+                                            </li>
+											
+                                            <li>
+                                                <a href="shop.html"><span>Shop</span></a>
+												
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="hempxylitol.html"><span>Xlitol from Hemp</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="contact.html"><span>Contact</span></a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </nav><a class="responsive-menu-toggle" href="#"><i class="icon-menu-fine"></i></a>
+                                </div>
+                                <div class="secondary_menu_wrapper"></div>
+                                <div class="banner_wrapper"></div>
+                                <div class="search_wrapper">
+                                    <form method="get" id="searchform" action="#">
+                                        <i class="icon_search icon-search-fine"></i><a href="#" class="icon_close"><i class="icon-cancel-fine"></i></a>
+                                        <input type="text" class="field" name="s" id="s" placeholder="Enter your search" />
+                                        <input type="submit" class="submit" value="" style="display:none;" />
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="top_bar_right">
+                                <div class="top_bar_right_wrapper">
+                                    <a id="header_cart" href="#"><i class="icon-bag-fine"></i><span>0</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+			</div>
+			
+			<div class="mfn-main-slider" id="mfn-rev-slider">
+                    <div class="section mcb-section    bg-cover-ultrawide"  style="padding-top:180px; padding-bottom:180px; background-image: url('images/plants-talk_eyes_ovcbdb.jpg'); background-size: 100%; height: 370px; background-repeat: repeat-y;"  data-parallax="3d"></div>
+                </div>
+			
+        
+        <div id="Content">
+            <div class="content_wrapper clearfix">
+                <div class="sections_group">
+                    <div class="entry-content">
+                        <div class="section mcb-section" style="">
+                            <div class="section_wrapper mcb-section-inner">
+                                <div class="wrap mcb-wrap one  valign-top clearfix">
+                                    <div class="mcb-wrap-inner">
+                                        <div class="column mcb-column one-sixth column_placeholder">
+                                            <div class="placeholder">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                        <div class="column mcb-column two-third column_column ">
+                                            <div class="column_attr clearfix align_left">
+                                                
+                                                <p>
+                                                    We are happy to announce HempSweet is finalizing plans to fund our 12 month long R&D to scale the world’s first mass produced microorganism conversion of hemp xylose into xylitol.  If you are interested in how we plan to reverse 75% of all chronic disease in the world without giving up sweets, then check us out at HempXylitol.com </p>
+<br>
+<b>If our DASH Masternode Treasury Budget Proposal is accepted this will mark the first time in history a large scale commodity producer is funded from a crypto-currency blockchain</b>.
+                                                </p>
+                                            </div>
+                                        </div>
+										<div>
+                                            <div>
+											<h2 style="text-align:center;">Welcome to Hempsweet</h2>
+											</div>
+											</div>
+										
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section mcb-section equal-height" style="padding-top:0px; padding-bottom:70px;">
+                            <div class="section_wrapper mcb-section-inner">
+                                <div class="wrap mcb-wrap one  valign-top clearfix">
+                                    <div class="mcb-wrap-inner">
+                                        <div class="column mcb-column  one column_image">
+                                            <div class="image_frame image_item no_link scale-with-grid aligncenter no_border" ><div class="image_wrapper"><img class="scale-with-grid" src="images/Yoga-Asanas-For-Spine-Health-And-Weight-Loss_ycxrqc.jpg" alt="Yoga-Asanas-For-Spine-Health-And-Weight-Loss_ycxrqc" width="768" height="401" /></div></div>
+                                        </div>
+										<div class="column_attr clearfix align_center"  style=""><h4>Hemp (Male cannabis without THC cannabinoid) is the most profound plant in human history with its CBD having the best and longest proven safety profile of any medicine in the world. To date there is not one reported adverse event from CBD consumption for over 10,000 years.</h4></div>
+                                        <div style="padding-top:40px;">
+                                        <div class="column mcb-column three-fifth column_column  column-margin-"><div class="column_attr clearfix align_left"  style=""><b>Consistent with our Whole Hemp Utilization Philosophy, we utilize our patented Continuous Countercurrent Reactor (CCR) to naturally refine hemp biomass into many high value products, including hemp packaging material and hemp paper products.</b></div></div>
+                                        <div class="column mcb-column two-fifth column_photo_box "><div class="photo_box  without-desc"><div class="image_frame"><div class="image_wrapper"><div class="mask"></div><img class="scale-with-grid" src="images/HH_Superfood_L_c70btx.jpg" alt="HH_Superfood_L_c70btx" width="300" height="128"/></div></div></div>
+                                          </div></div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section mcb-section   "  style="padding-top:0px; padding-bottom:0px; background-color:; background-image:url(images/home_herbal_slider_bg.png); background-repeat:no-repeat; background-position:center top; background-attachment:; background-size:; -webkit-background-size:" ><div class="section_wrapper mcb-section-inner"><div class="wrap mcb-wrap one  valign-top clearfix" style="padding:40px 0px 0px 40px" ><div class="mcb-wrap-inner"><div class="column mcb-column three-fifth column_column  column-margin-"><div class="column_attr clearfix align_center"  style=""><h3>Check out our Hemp CBD Products</h3></div></div><div class="column mcb-column two-fifth column_button"><div class="button_align align_center"><a class="button  button_size_2 button_js" href=""    style=" background-color:#ffffff !important; color:#1c4e2a;"  ><span class="button_label">Click to Shop</span></a></div>
+</div></div></div></div></div>
+                        
+						<div class="section mcb-section    bg-cover"  style="padding-top:0px; padding-bottom:0px; background-color:;" ><div class="section_wrapper mcb-section-inner"><div class="wrap mcb-wrap one  valign-top clearfix" style="padding:20px 0px opx 20px" ><div class="mcb-wrap-inner"><div class="column mcb-column one column_image "><div class="image_frame image_item no_link scale-with-grid aligncenter no_border" style="margin-top:20px;"><div class="image_wrapper"><img class="scale-with-grid" src="images/cannabinoid_wheel_bcpreb_v2qq6r.jpg" alt="cannabinoid_wheel_bcpreb_v2qq6r" width="924" height="924" /></div></div>
+</div></div></div></div></div>
+						
+						<div class="section mcb-section   "  style="padding-top:0px; padding-bottom:0px; background-color:; background-image:url(images/home_herbal_slider_bg.png); background-repeat:no-repeat; background-position:center top; background-attachment:; background-size:; -webkit-background-size:" ><div class="section_wrapper mcb-section-inner"><div class="wrap mcb-wrap one  valign-top clearfix" style="padding:40px 0px 0px 40px" ><div class="mcb-wrap-inner"><div class="column mcb-column one column_column  column-margin-"><div class="column_attr clearfix align_center"  style=""><h3>Click On Your Concern to Find Out –How CBD Can Improve The Quality Of Your Life</h3></div></div></div></div></div></div>
+						<br><br>
+						
+						<div class="section mcb-section equal-height" style="padding-top:0px; padding-bottom:70px;">
+                            <div class="section_wrapper mcb-section-inner">
+                                <div class="wrap mcb-wrap one  valign-top clearfix">
+                                    <div class="mcb-wrap-inner">
+                                        
+										
+  <button class="accordion">Weight Loss (Fights Obesity)</button>
+  <div class="pannel">
+    <p>Want to lose weight after the holidays? Well you guessed it, Pure Kind Botanicals™ is a perfect compliment to your weight loss routine.</p>
+<p>Cannabinol fights abdominal obesity!  If you combine our CBD with the MCT oil for your Bullet Proof Coffee, well you have a winning combination.  Take the CBD/Xylitol Challenge Today!</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.amjmed.com/article/S0002-9343%2813%2900200-3/abstract" target="_blank">The impact of marijuana use on glucose, insulin, and insulin resistance among US adults</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22543671" target="_blank">Cannabinol and cannabidiol exert opposing effects on rat feeding patterns</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23410498" target="_blank">Cannabis and Δ9-tetrahydrocannabinol (THC) for weight loss?</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/18563385" target="_blank">The endocannabinoid system in obesity and type 2 diabetes</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19641317" target="_blank">Role of the endocannabinoid system in abdominal obesity and the implications for cardiovascular risk</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21484568" target="_blank">Cannabinoids and endocannabinoids in metabolic disorders with focus on diabetes</a></strong> (PubMed)</li>
+</ul>
+  </div>
+  
+  
+  <button class="accordion">Stress</button>
+  <div class="pannel">
+   <p>Cannabidiol (CBD) works on Stress because Stress is from our inflammatory lifestyle.</p>
+<p>Imagine if you could just consume an organic plant grown in your home that works better than any synthetic Prozac like drug with horrific side-effects and is poisoning our water supply.  Well hemp once again is the answer.  Combine Hempsweet&#8217;s CBD products with a low-to-no refined sugar diet and watch the worries go away.</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/20439721" target="_blank">Endogenous cannabinoid signaling is essential for stress adaptation</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/18433869" target="_blank">Regulation of endocannabinoid signaling by stress: Implications for stress-related affective disorders</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21068301" target="_blank">Functional interactions between stress and the endocannabinoid system: from synaptic signaling to behavioral output</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24353209"><strong>Neuromodulators, stress and plasticity: a role for endocannabinoid signalling</strong></a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15525997" target="_blank">Downregulation of endocannabinoid signaling in the hippocampus following chronic unpredictable stress</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21663537" target="_blank">Endocannabinoids and stress</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24882055"><strong>Stress regulates endocannabinoid-CB1 receptor signaling</strong></a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/25355210"><strong>Chronic Stress Impairs α1-Adrenoceptor-Induced Endocannabinoid-Dependent Synaptic Plasticity in the Dorsal Raphe Nucleus</strong> </a>(Pub Med)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19616342" target="_blank">Endocannabinoid-mediated modulation of stress responses: Physiological and pathophysiological significance</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24141570" target="_blank">Cannabinoid receptor activation prevents the effects of chronic mild stress on emotional learning and LTP in a rat model of depression</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23426383"><strong>Cannabinoids ameliorate impairments induced by chronic stress to synaptic plasticity and short-term memory</strong></a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23298518">The anxiolytic effect of cannabidiol on chronically stressed mice depends on hippocampal neurogenesis: involvement of the endocannabinoid system</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24335217"><strong>Low-frequency stimulation evokes serotonin release in the nucleus accumbens and induces long-term depression via production of endocannabinoid</strong> </a>(PubMed)</li>
+</ul>
+  </div>
+  
+  
+  <button class="accordion">Skin Conditions</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) is what steroid creams dream of being for Skin Conditions. Hemp may cure it all without any of the horrible side effects seen with topical steroids and other medications used for eczema, rash, psoriasis, chronic itching.</p>
+<p>Whether it is a bad diaper rash, eczema, psoriasis or the famous dermatologist phrase &#8220;lets just try a steroid cream as see what happens&#8221;&#8230;&#8230;consider first our totally safe MCT/CBD oil or Relief Cream first.</p>
+<p>Plus Hempsweet&#8217;s <a href="/web/20170605231058/https://hempsweet.net/product/nourishing-facial-serum-with-full-spectrum-hemp-cbd-extract">Pure Kind Botanical ™ Facial Serum</a> can do wonders on your damaged facial skin.</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17157480" target="_blank">Cannabinoids inhibit human keratinocyte proliferation through a non-CB1/CB2 mechanism and have a potential therapeutic value in the treatment of psoriasis</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/25061872">Cannabidiol exerts sebostatic and antiinflammatory effects on human sebocytes</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19608284" target="_blank">The endocannabinoid system of the skin in health and disease: Novel perspectives and therapeutic opportunities</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23869687" target="_blank">Epigenetic control of skin differentiation genes by phytocannabinoids</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23638377" target="_blank">A novel control of human keratin expression: cannabinoid receptor 1-mediated signaling down-regulates the expression of keratins K6 and K16 in human keratinocytes in vitro and in situ</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21248768" target="_blank">Endocannabinoids modulate human epidermal keratinocyte proliferation and survival via the sequential engagement of cannabinoid receptor-1 and transient receptor potential vanilloid-1</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23585676" target="_blank">Cannabinoid 1 receptors in keratinocytes modulate proinflammatory chemokine secretion and attenuate contact allergic inflammation</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17556587" target="_blank">Attenuation of allergic contact dermatitis through the endocannabinoid system</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/16874533" target="_blank">Topical cannabinoid agonists. An effective new possibility for treating chronic pruritus</a></strong>(PubMed)</li>
+</ul>
+  </div>
+  
+  <button class="accordion">Fights Cancer</button>
+  <div class="pannel">
+    <p>Cannabis has been found to fight cancer; and discovered by the US government! Plus it is really good at reducing the side-effects associated with cancer treatments.</p>
+<blockquote><p>&#8220;In the practice of integrative oncology, the health care provider may recommend medicinal Cannabis not only for symptom management but also for its possible <strong>direct anti-tumor effect</strong>.&#8221;</p></blockquote>
+<p>Yes! you read that correct.  This is a direct quote from a public statement in March of 2011 by the National Cancer Institute (NCI) &#8212; that specific statement was removed (hmm government), but you can still read about the <a href="https://web.archive.org/web/20170605231058/https://www.cancer.gov/about-cancer/treatment/cam/hp/cannabis-pdq#section/all" target="_blank">anti-cancer effects of CBD here</a>.</p>
+<ul>
+<li id="section_5.17" tabindex="1">Guzmán M, Duarte MJ, Blázquez C, et al.: A pilot clinical study of Delta9-tetrahydrocannabinol in patients with recurrent glioblastoma multiforme. Br J Cancer 95 (2): 197-203, 2006. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=16804518&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=16804518&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.18">Velasco G, Sánchez C, Guzmán M: Towards the use of cannabinoids as antitumour agents. Nat Rev Cancer 12 (6): 436-44, 2012. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22555283&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22555283&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.15" tabindex="1">Singh Y, Bali C: Cannabis extract treatment for terminal acute lymphoblastic leukemia with a Philadelphia chromosome mutation. Case Rep Oncol 6 (3): 585-92, 2013. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=24474921&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=24474921&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.16">Foroughi M, Hendson G, Sargent MA, et al.: Spontaneous regression of septum pellucidum/forniceal pilocytic astrocytomas&#8211;possible role of Cannabis inhalation. Childs Nerv Syst 27 (4): 671-9, 2011. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=21336992&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=21336992&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.10">Daling JR, Doody DR, Sun X, et al.: Association of marijuana use and the incidence of testicular germ cell tumors. Cancer 115 (6): 1215-23, 2009. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=19204904&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=19204904&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.11">Trabert B, Sigurdson AJ, Sweeney AM, et al.: Marijuana use and testicular germ cell tumors. Cancer 117 (4): 848-53, 2011. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=20925043&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=20925043&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.12">Lacson JC, Carroll JD, Tuazon E, et al.: Population-based case-control study of recreational drug use and testis cancer risk confirms an association between marijuana use and nonseminoma risk. Cancer 118 (21): 5374-83, 2012. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22965656&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22965656&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.13">Thomas AA, Wallner LP, Quinn VP, et al.: Association between cannabis use and the risk of bladder cancer: results from the California Men&#8217;s Health Study. Urology 85 (2): 388-92, 2015. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=25623697&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=25623697&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.14">Health Canada: Marihuana (Marijuana, Cannabis): Dried Plant for Administration by Ingestion or Other Means. Ottawa, Canada: Health Canada, 2010. <a title="http://www.hc-sc.gc.ca/dhp-mps/marihuana/med/infoprof-eng.php" href="https://web.archive.org/web/20170605231058/http://www.hc-sc.gc.ca/dhp-mps/marihuana/med/infoprof-eng.php">Available online</a><a class="icon-exit-notification" title="Exit Disclaimer" href="https://web.archive.org/web/20170605231058/https://www.cancer.gov/global/web/policies/exit"><span class="hidden">Exit Disclaimer</span></a>. Last accessed December 8, 2016.</li>
+<li id="section_5.19">Sutton IR, Daeninck P: Cannabinoids in the management of intractable chemotherapy-induced nausea and vomiting and cancer-related pain. J Support Oncol 4 (10): 531-5, 2006 Nov-Dec. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=17136871&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=17136871&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.20">Ahmedzai S, Carlyle DL, Calder IT, et al.: Anti-emetic efficacy and toxicity of nabilone, a synthetic cannabinoid, in lung cancer chemotherapy. Br J Cancer 48 (5): 657-63, 1983. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=6315040&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=6315040&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.21">Chan HS, Correia JA, MacLeod SM: Nabilone versus prochlorperazine for control of cancer chemotherapy-induced emesis in children: a double-blind, crossover trial. Pediatrics 79 (6): 946-52, 1987. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=3035479&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=3035479&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.22">Johansson R, Kilkku P, Groenroos M: A double-blind, controlled trial of nabilone vs. prochlorperazine for refractory emesis induced by cancer chemotherapy. Cancer Treat Rev 9 (Suppl B): 25-33, 1982. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=6299551&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=6299551&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.23">Niiranen A, Mattson K: A cross-over comparison of nabilone and prochlorperazine for emesis induced by cancer chemotherapy. Am J Clin Oncol 8 (4): 336-40, 1985. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=3002167&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=3002167&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.24">Tramèr MR, Carroll D, Campbell FA, et al.: Cannabinoids for control of chemotherapy induced nausea and vomiting: quantitative systematic review. BMJ 323 (7303): 16-21, 2001. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=11440936&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=11440936&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.25">Ben Amar M: Cannabinoids in medicine: A review of their therapeutic potential. J Ethnopharmacol 105 (1-2): 1-25, 2006. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=16540272&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=16540272&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.26">Smith LA, Azariah F, Lavender VT, et al.: Cannabinoids for nausea and vomiting in adults with cancer receiving chemotherapy. Cochrane Database Syst Rev (11): CD009464, 2015. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=26561338&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=26561338&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.27">Chang AE, Shiling DJ, Stillman RC, et al.: A prospective evaluation of delta-9-tetrahydrocannabinol as an antiemetic in patients receiving adriamycin and cytoxan chemotherapy. Cancer 47 (7): 1746-51, 1981. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=6261926&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=6261926&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.28">Chang AE, Shiling DJ, Stillman RC, et al.: Delta-9-tetrahydrocannabinol as an antiemetic in cancer patients receiving high-dose methotrexate. A prospective, randomized evaluation. Ann Intern Med 91 (6): 819-24, 1979. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=293141&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=293141&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.29">Levitt M, Faiman C, Hawks R, et al.: Randomized double blind comparison of delta-9-tetrahydrocannabinol and marijuana as chemotherapy antiemetics. [Abstract] Proceedings of the American Society of Clinical Oncology 3: A-C354, 91, 1984.</li>
+<li id="section_5.30">Musty RE, Rossi R: Effects of smoked cannabis and oral delta-9-tetrahydrocannabinol on nausea and emesis after cancer chemotherapy: a review of state clinical trials. Journal of Cannabis Therapeutics 1 (1): 29-56, 2001. <a title="http://www.cannabis-med.org/data/pdf/2001-01-2.pdf" href="https://web.archive.org/web/20170605231058/http://www.cannabis-med.org/data/pdf/2001-01-2.pdf">Also available online</a><a class="icon-exit-notification" title="Exit Disclaimer" href="https://web.archive.org/web/20170605231058/https://www.cancer.gov/global/web/policies/exit"><span class="hidden">Exit Disclaimer</span></a>. Last accessed December 8, 2016.</li>
+<li id="section_5.31">Duran M, Pérez E, Abanades S, et al.: Preliminary efficacy and safety of an oromucosal standardized cannabis extract in chemotherapy-induced nausea and vomiting. Br J Clin Pharmacol 70 (5): 656-63, 2010. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=21039759&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=21039759&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.32">Jatoi A, Windschitl HE, Loprinzi CL, et al.: Dronabinol versus megestrol acetate versus combination therapy for cancer-associated anorexia: a North Central Cancer Treatment Group study. J Clin Oncol 20 (2): 567-73, 2002. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=11786587&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=11786587&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.33">Brisbois TD, de Kock IH, Watanabe SM, et al.: Delta-9-tetrahydrocannabinol may palliate altered chemosensory perception in cancer patients: results of a randomized, double-blind, placebo-controlled pilot trial. Ann Oncol 22 (9): 2086-93, 2011. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=21343383&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=21343383&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.34">Strasser F, Luftner D, Possinger K, et al.: Comparison of orally administered cannabis extract and delta-9-tetrahydrocannabinol in treating patients with cancer-related anorexia-cachexia syndrome: a multicenter, phase III, randomized, double-blind, placebo-controlled clinical trial from the Cannabis-In-Cachexia-Study-Group. J Clin Oncol 24 (21): 3394-400, 2006. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=16849753&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=16849753&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.35">Beal JE, Olson R, Laubenstein L, et al.: Dronabinol as a treatment for anorexia associated with weight loss in patients with AIDS. J Pain Symptom Manage 10 (2): 89-97, 1995. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=7730690&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=7730690&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.36">Foltin RW, Brady JV, Fischman MW: Behavioral analysis of marijuana effects on food intake in humans. Pharmacol Biochem Behav 25 (3): 577-82, 1986. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=3774823&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=3774823&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.37">Foltin RW, Fischman MW, Byrne MF: Effects of smoked marijuana on food intake and body weight of humans living in a residential laboratory. Appetite 11 (1): 1-14, 1988. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=3228283&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=3228283&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.38">Aggarwal SK: Cannabinergic pain medicine: a concise clinical primer and survey of randomized-controlled trial results. Clin J Pain 29 (2): 162-71, 2013. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22367503&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22367503&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.39">Walker JM, Hohmann AG, Martin WJ, et al.: The neurobiology of cannabinoid analgesia. Life Sci 65 (6-7): 665-73, 1999. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=10462067&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=10462067&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.40">Calignano A, La Rana G, Giuffrida A, et al.: Control of pain initiation by endogenous cannabinoids. Nature 394 (6690): 277-81, 1998. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9685157&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9685157&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.41">Fields HL, Meng ID: Watching the pot boil. Nat Med 4 (9): 1008-9, 1998. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9734389&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=9734389&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.42">Noyes R Jr, Brunk SF, Baram DA, et al.: Analgesic effect of delta-9-tetrahydrocannabinol. J Clin Pharmacol 15 (2-3): 139-43, 1975 Feb-Mar. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=1091664&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=1091664&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.43">Noyes R Jr, Brunk SF, Avery DA, et al.: The analgesic properties of delta-9-tetrahydrocannabinol and codeine. Clin Pharmacol Ther 18 (1): 84-9, 1975. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=50159&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=50159&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.44">Johnson JR, Burnell-Nugent M, Lossignol D, et al.: Multicenter, double-blind, randomized, placebo-controlled, parallel-group study of the efficacy, safety, and tolerability of THC:CBD extract and THC extract in patients with intractable cancer-related pain. J Pain Symptom Manage 39 (2): 167-79, 2010. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=19896326&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=19896326&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.45">Portenoy RK, Ganae-Motan ED, Allende S, et al.: Nabiximols for opioid-treated cancer patients with poorly-controlled chronic pain: a randomized, placebo-controlled, graded-dose trial. J Pain 13 (5): 438-49, 2012. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22483680&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22483680&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.46">Johnson JR, Lossignol D, Burnell-Nugent M, et al.: An open-label extension study to investigate the long-term safety and tolerability of THC/CBD oromucosal spray and oromucosal THC spray in patients with terminal cancer-related pain refractory to strong opioid analgesics. J Pain Symptom Manage 46 (2): 207-18, 2013. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=23141881&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=23141881&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+</ul>
+  </div>
+  
+ <button class="accordion">Pain &amp; Inflammation</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) is one of the most effective anti-inflammatory medicines ever discovered &amp; it is arguably the safest.</p>
+<p>Hemp CBD is amazing for Joint Pain (Arthritis), Nerve Pain (Neuropathy), Degenerative Diseases (Spine, bone, connective tissue), Fibromyalgia, Diabetic Neuropathy, Gout, Back Pain&#8230;..Hopefully it is obvious everyone can benefit from CBD.</p>
+<blockquote><p>As a class, the cannabinoids are generally free from the adverse effects associated with NSAIDs.</p></blockquote>
+<ul>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2241751/" target="_blank">PACHER P, BÁTKAI S, KUNOS G. The Endocannabinoid System as an Emerging Target of Pharmacotherapy. <i>Pharmacological reviews</i>. 2006;58(3):389-462. doi:10.1124/pr.58.3.2.</a></li>
+<li id="section_5.47">Lynch ME, Cesar-Rittenberg P, Hohmann AG: A double-blind, placebo-controlled, crossover pilot trial with extension using an oral mucosal cannabinoid extract for treatment of chemotherapy-induced neuropathic pain. J Pain Symptom Manage 47 (1): 166-73, 2014. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=23742737&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=23742737&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.48">Maida V, Ennis M, Irani S, et al.: Adjunctive nabilone in cancer pain and symptom management: a prospective observational study using propensity scoring. J Support Oncol 6 (3): 119-24, 2008. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=18402303&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=18402303&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.49">Abrams DI, Couey P, Shade SB, et al.: Cannabinoid-opioid interaction in chronic pain. Clin Pharmacol Ther 90 (6): 844-51, 2011. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22048225&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22048225&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.50">Wilsey B, Marcotte T, Deutsch R, et al.: Low-dose vaporized cannabis significantly improves neuropathic pain. J Pain 14 (2): 136-48, 2013. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=23237736&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=23237736&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.51">Wilsey B, Marcotte T, Tsodikov A, et al.: A randomized, placebo-controlled, crossover trial of cannabis cigarettes in neuropathic pain. J Pain 9 (6): 506-21, 2008. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=18403272&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=18403272&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.52">Abrams DI, Jay CA, Shade SB, et al.: Cannabis in painful HIV-associated sensory neuropathy: a randomized placebo-controlled trial. Neurology 68 (7): 515-21, 2007. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=17296917&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=17296917&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.53">Ellis RJ, Toperoff W, Vaida F, et al.: Smoked medicinal cannabis for neuropathic pain in HIV: a randomized, crossover clinical trial. Neuropsychopharmacology 34 (3): 672-80, 2009. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=18688212&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=18688212&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li id="section_5.54">Noyes R Jr, Baram DA: Cannabis analgesia. Compr Psychiatry 15 (6): 531-5, 1974 Nov-Dec. <a title="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=4426188&amp;dopt=Abstract" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=4426188&amp;dopt=Abstract">[PUBMED Abstract]</a></li>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2664885/" target="_blank">Burstein SH, Zurier RB. Cannabinoids, Endocannabinoids, and Related Analogs in Inflammation. <i>The AAPS Journal</i>. 2009;11(1):109. doi:10.1208/s12248-009-9084-5.</a></li>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pubmed/27435265" target="_blank">FASEB J. 2016 Nov;30(11):3682-3689. Epub 2016 Jul 19.</a><br/>
+Cannabinoids, inflammation, and fibrosis.<br/>
+Zurier RB1,2, Burstein SH3,4.</li>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4851925/" target="_blank">Hammell DC, Zhang LP, Ma F, et al. Transdermal cannabidiol reduces inflammation and pain-related behaviours in a rat model of arthritis. <i>European journal of pain (London, England)</i>. 2016;20(6):936-948. doi:10.1002/ejp.818.</a></li>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pubmed/19388223" target="_blank">Shaladi AM, Crestani F, Tartari S, Piva B. [Cannabinoids in the control of</a><br/>
+pain]. Recenti Prog Med. 2008 Dec;99(12):616-24. Review. Italian. PubMed PMID: 19388223.</li>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1751232/" target="_blank">Mechoulam R. Plant cannabinoids: a neglected pharmacological treasure trove. <i>British Journal of Pharmacology</i>. 2005;146(7):913-915. doi:10.1038/sj.bjp.0706415.</a></li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21238581" target="_blank">Cannabidiol as an emergent therapeutic strategy for lessening the impact of inflammation on oxidative stress</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=The+endocannabinoid+system%3A+an+emerging+key+player+in+inflammation">The endocannabinoid system: an emerging key player in inflammation</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22850623" target="_blank">Anti-inflammatory role of cannabidiol and O-1602 in cerulein-induced acute pancreatitis in mice</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19199042" target="_blank">Cannabinoids, endocannabinoids, and related analogs in inflammation</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22265864" target="_blank">Cannabidiol, a non-psychotropic plant-derived cannabinoid, decreases inflammation in a murine model of acute lung injury: role for the adenosine A(2A) receptor</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22585736" target="_blank">Cannabinoids suppress inflammatory and neuropathic pain by targeting α3 glycine receptors</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22163000" target="_blank">Cannabidiol reduces intestinal inflammation through the control of neuroimmune axis</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21537423" target="_blank">Diabetic retinopathy: Role of inflammation and potential therapies for anti-inflammation</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22163051" target="_blank">Cannabidiol reduces Aβ-induced neuroinflammation and promotes hippocampal neurogenesis through PPARγ involvement</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17384130" target="_blank">Cannabidiol attenuates high glucose-induced endothelial cell inflammatory response and barrier disruption</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15313881" target="_blank">Vanilloid TRPV1 receptor mediates the antihyperalgesic effect of the nonpsychoactive cannabinoid, cannabidiol, in a rat model of acute inflammation</a>(PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19074681" target="_blank">Cannabidiol attenuates cisplatin-induced nephrotoxicity by decreasing oxidative/nitrosative stress, inflammation, and cell death</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/11152013" target="_blank">Cannabinoids in clinical practice</a> (PubMed)</li>
+</ul>
+  </div>
+  
+
+<button class="accordion">Osteopenia and Osteoporosis</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) treats Osteoporosis in a way the dangerous/expensive pharmaceuticals just can&#8217;t.</p>
+<p>Try Hempsweets <a href="/web/20170605231058/https://hempsweet.net/product-tag/cbd-oil">CBD Oils</a> and/or <a href="/web/20170605231058/https://hempsweet.net/product/relieving-balm-w-full-spectrum-hemp-extract-550-mg-of-cbd">Relief Balm Cream</a> that has 550mg in every 2 oz. jar</p>
+<ul>
+<li><strong><a title="Cannabinoid receptors as target for treatment of osteoporosis" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21358974" target="_blank">Cannabinoid receptors as target for treatment of osteoporosis: A tale of two therapies</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/20532878" target="_blank">Cannabinoids and bone: Friend or foe?</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19656492" target="_blank">Cannabinoid receptor type 1 protects against age-related osteoporosis by regulating osteoblast and adipocyte differentiation in marrow stromal cells</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19634029" target="_blank">Cannabinoids and the skeleton: From marijuana to reversal of bone loss</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21237298" target="_blank">The endovanilloid/endocannabinoid system: A new potential target for osteoporosis therapy</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19059369" target="_blank">The endovanilloid/endocannabinoid system in human osteoclasts: Possible involvement in bone formation and resorption</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/18426503" target="_blank">Endocannabinoids and the regulation of bone metabolism</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/18071301" target="_blank">Cannabinoid receptors and the regulation of bone mass</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17106868" target="_blank">Natural products as alternative treatments for metabolic bone disorders and for maintenance of bone health</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/16407142" target="_blank">Peripheral cannabinoid receptor, CB2, regulates bone mass</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15908955" target="_blank">Regulation of bone mass, bone loss and osteoclast activity by cannabinoid receptors</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23827126" target="_blank">Long-chain polyunsaturated fatty acids may mutually benefit both obesity and osteoporosis</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21557736" target="_blank">Skeletal lipidomics: Regulation of bone metabolism by fatty acid amide family</a></strong>(PubMed)</li>
+<li></li>
+</ul>
+  </div>
+  
+
+<button class="accordion">Heart Disease</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) helps prevent heart disease and is a proven therapeutic to treat cardiovascular disease and heart muscle damage</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22670794" target="_blank">Is the cardiovascular system a therapeutic target for cannabidiol?</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/20590615" target="_blank">Acute administration of cannabidiol in vivo suppresses ischaemia-induced cardiac arrhythmias and reduces infarct size when given at reperfusion</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21144973" target="_blank">Cannabidiol attenuates cardiac dysfunction, oxidative stress, fibrosis, and inflammatory and cell death signaling pathways in diabetic cardiomyopathy</a></strong>(PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24853683"><strong>The Effect of Cannabidiol on Ischemia/Reperfusion-Induced Ventricular Arrhythmias: The Role of Adenosine A1 Receptors</strong></a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17890433" target="_blank">Cannabidiol, a nonpsychoactive Cannabis constituent, protects against myocardial ischemic reperfusion injury</a></strong> (PubMed)</li>
+<li><a title="Endocannabinoid acting at cannabinoid-1 receptors in hypertension" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=Endocannabinoids+acting+at+cannabinoid-1+receptors+regulate+cardiovascular+function+in+hypertension" target="_blank"><strong>Endocannabinoids acting at cannabinoid-1 receptors regulate cardiovascular function in hypertension</strong></a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17445087" target="_blank">Oleamide: A fatty acid amide signaling molecule in the cardiovascular system?</a></strong>(PubMed)</li>
+</ul>
+  </div>
+  
+
+<button class="accordion">Epilepsy/Seizure</button>
+ <div class="pannel">
+    <p>Cannabidiol (CBD) from Hemp (Male form of Sativa) is clinically proven to Treat Epilepsy/seizure.</p>
+<p>None of this information is to point fingers or put blame on one specific thing, but ignoring the power of this natural plant needs to stop. Lets use the power of truth and the the internet and improve the quality of life of every one of our friends and family&#8217;s.</p>
+<p>Become one of Hempsweet&#8217;s Partner Educators Today!</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.youtube.com/watch?v=BH5yzEu3JGQ&amp;feature=youtu.be" target="_blank" data-rel="lightbox-video-0">CBD for children with Dravet’s and intractable seizures</a> </strong>(Video)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24237632" target="_blank">Report of a parent survey of cannabidiol-enriched cannabis use in pediatric treatment-resistant epilepsy</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.mapinc.org/drugnews/v13/n257/a05.html?1126" target="_blank">Medicinal marijuana stops seizures, brings hope to a little girl</a> </strong>(Gazette, Colorado Springs)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22696383" target="_blank">Cannabinoids for epilepsy</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/25282526"><strong>Cannabis, cannabidiol, and epilepsy – From receptors to clinical response</strong> </a>(PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://pubs.acs.org/doi/pdf/10.1021/cn5000524"><strong>The non-psychotropic plant cannabinoids, cannabidivarin (CBDV) and cannabidiol (CBD), activate and desensitize transient receptor potential vanilloid 1 (TRPV1) channels in vitro: potential for the treatment of neuronal hyperexcitability</strong> </a>(ACS Publications)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/7413719" target="_blank">Chronic administration of cannabidiol to healthy volunteers and epileptic patients</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21441624"><strong>Endocannabinoid system protects against cryptogenic seizures</strong></a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/25346637"><strong>Seizing an opportunity for the endocannabinoid system</strong> </a>(Pub Med)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/25346628"><strong>Cannabidiol: promise and pitfalls</strong></a> (Pub Med)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=Cannabidiol%3A+Pharmacology+and+potential+therapeutic+role+in+epilepsy+and+other+neuropsychiatric+disorders"><strong>Cannabidiol: Pharmacology and potential therapeutic role in epilepsy and other neuropsychiatric </strong></a><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=Cannabidiol%3A+Pharmacology+and+potential+therapeutic+role+in+epilepsy+and+other+neuropsychiatric+disorders"><strong>disorders</strong></a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://epilepsyut.org/downloads/Jacobson&amp;Porter.pdf"><strong>Report of a parent survey of cannabidiol-enriched cannabis use in pediatric</strong><strong>treatment-resistant epilepsy</strong></a> (Epilepsy Association of Utah)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=From+the+Editors%3A+Cannabidiol+and+medical+marijuana+for+the+treatment+of+epilepsy"><strong>From the Editors: Cannabidiol and medical marijuana for the treatment of </strong></a><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=From+the+Editors%3A+Cannabidiol+and+medical+marijuana+for+the+treatment+of+epilepsy"><strong>epilepsy</strong></a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3840466/pdf/peerj-01-214.pdf"><strong>Cannabidivarin (CBDV) suppressespentylenetetrazole (PTZ)-inducedincreases in epilepsy-related gene expression</strong></a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22520455" target="_blank">Cannabidiol exerts anti-convulsant effects in animal models of temporal lobe and partial seizures</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19906779" target="_blank">Cannabidiol displays antiepileptiform and antiseizure properties in vitro and in vivo</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/7028792" target="_blank">Hypnotic and antiepileptic effects of cannabidiol</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/6975285" target="_blank">The cannabinoids as potential antiepileptics</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/850145" target="_blank">Cannabidiol–antiepileptic drug comparisons and interactions in experimentally induced seizures in rats</a> </strong>(PubMed)</li>
+
+<p><iframe width="500" height="281" src="https://web.archive.org/web/20170605231058if_/https://www.youtube.com/embed/fOa_2Bc-lfY?feature=oembed" frameborder="0" allowfullscreen></iframe></p>
+<p>We will also sell our pure 99.8% pure isolate CBD from 100% legal hemp to pharmaceutical companies, but we will never stop sharing this completely safe cannabinoid with anyone who orders it.  We will ship to any home in any state in the the United States of America.  The smear and fear campaign for pharmaceutical profits that is going on in the USA has to STOP!</p>
+</ul>
+
+</div>
+
+<button class="accordion">Dementia &amp; Alzheimer's</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) is clinically proven to Treat Alzheimer’s and the Prevention of Dementia.</p>
+<ul>
+<li><strong><a title="The therapeutic potential of the endocannabinoid system for Alzheimer's" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22448595" target="_blank">The therapeutic potential of the endocannabinoid system for Alzheimer’s disease</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24256258" target="_blank">Endocannabinoid signalling in Alzheimer’s disease</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2562334/" target="_blank">A molecular link between the active component of marijuana and Alzheimer’s disease pathology</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15030397" target="_blank">Neuroprotective effect of cannabidiol, a non-psychoactive component from Cannabis sativa, on beta-amyloid-induced toxicity in PC12 cells</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/25024327"><strong>The Potential Therapeutic Effects of THC on Alzheimer’s Disease </strong></a>(PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19370677"><strong>Cannabinoids for the treatment of dementia</strong></a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17592514" target="_blank">Cannabidiol in vivo blunts beta-amyloid induced neuroinflammation by suppressing IL-1beta and iNOS expression </a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19228180" target="_blank">Cannabidiol: A promising drug for neurodegenerative disorders?</a></strong> (PubMed)</li>
+<li><a title="CBD receptor 1 deficiency in a mouse model of Alzheimer's" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=Cannabinoid+receptor+1+deficiency+in+a+mouse+model+of+Alzheimer%E2%80%99s+disease+leads+to+enhanced+cognitive+impairment+despite+of+a+reduction+in+amyloid+deposition" target="_blank"><strong>Cannabinoid receptor 1 deficiency in a mouse model of Alzheimer’s disease leads to enhanced cognitive impairment despite of a reduction in amyloid deposition</strong></a>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/18781980" target="_blank">The role of the endocannabinoid system in Alzheimer’s disease: facts and hypotheses</a></strong> (PubMed)</li>
+<li><a title="The role of phytochemicals in the treatment of dementia" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21639405" target="_blank"><strong>The role of phytochemicals in the treatment and prevention of dementia</strong></a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19370677">Cannabinoids for the treatment of dementia</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24288245"><strong>Cannabidiol Promotes Amyloid Precursor Protein Ubiquitination and Reduction of Beta Amyloid Expression in SHSY5YAPP+ Cells Through PPARγ Involvement</strong></a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24634659" target="_blank"><strong>Cannabinoids for treatment of Alzheimer’s disease: moving toward the clinic</strong></a> (Pub Med)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.nextavenue.org/article/2012-10/can-marijuana-save-aging-brain" target="_blank">Can Marijuana Prevent Alzheimer’s?</a></strong> (Next Avenue)</li>
+</ul>
+  </div>
+  
+
+<button class="accordion">Post Traumatic Stress Disorder (PTSD)</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) for Post Traumatic Stress Disorder (PTSD) &#8211; Hope for our Vets and other Victims of the world!</p>
+<p>With one of the founders of Hempsweet being a US Navy Medic (Corpsman) veteran and still deals with the effects of PTSD, this one hits home.  Not only could cannabidiol play a key role in improving the quality of life for our veterans. If our world gave up on its petro oil addiction, and the war associated with it, replaced with Hemp (Yes hemp can do everything petro can do) then we would be living in a better world.</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://onlinelibrary.wiley.com/doi/10.1002/da.22031/abstract" target="_blank">The endocannabinoid system provides an avenue for evidence-based treatment development for PTSD</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24035186" target="_blank">Reductions in circulating endocannabinoid levels in individuals with post-traumatic stress disorder following exposure to the world trade center attacks</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15637635" target="_blank">Enhancing cannabinoid neurotransmission augments the extinction of conditioned fear</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24518289">Modulation of Fear Memory by Dietary Polyunsaturated Fatty Acids via Cannabinoid</a></strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24518289"> Receptors</a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22979992" target="_blank">Cannabidiol blocks long-lasting behavioral consequences of predator threat stress: Possible involvement of 5HT1A receptors</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24336729"><strong>Stress switches cannabinoid type-1 (CB1) receptor-dependent plasticity from LTD to LTP in the bed nucleus of the stria terminalis</strong> </a>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22736575" target="_blank">Mitigation of post-traumatic stress symptoms by Cannabis resin: A review of the clinical and neurobiological evidence</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23829364" target="_blank">Cannabinoid modulation of fear extinction brain circuits: A novel target to advance anxiety treatment</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17952654" target="_blank">The endocannabinoid system and extinction learning</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22687521" target="_blank">A current overview of cannabinoids and glucocorticoids in facilitating extinction of aversive memories: potential extinction enhancers</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23433741" target="_blank">Cannabinoids and traumatic stress modulation of contextual fear extinction and GR expression in the amygdala-hippocampal-prefrontal circuit</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=traumatic+and+Kerbage+H" target="_blank">Non-antidepressant long-term treatment in post-traumatic stress disorder</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23298518" target="_blank">The anxiolytic effect of cannabidiol on chronically stressed mice depends on hippocampal neurogenesis: Involvement of the endocannabinoid system</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24518289">Modulation of Fear Memory by Dietary Polyunsaturated Fatty Acids via Cannabinoid Receptors</a></strong> (PubMed)</li>
+</ul>
+  </div>
+  
+
+<button class="accordion">Drug Dependency &amp; Addiction</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) is clinically proven to Treat Addiction (And harmful effects) to tobacco, opiates, cocaine, sugar and alcohol.</p>
+<ul>
+<li><strong><a title="Cannabidiol reduces cigarette consumption" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23685330" target="_blank">Cannabidiol reduces cigarette consumption in tobacco smokers</a></strong> (PubMed)</li>
+<li><strong><a title="Cannabidiol inhibits reward-facilitation" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22862835" target="_blank">Cannabidiol inhibits the reward-facilitating effect of morphine</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19940171" target="_blank">Cannabidiol, a nonpsychotropic component of cannabis, inhibits cue-induced heroin seeking and normalizes discrete mesolimbic neuronal disturbances</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/1237925" target="_blank">Differential effect of cannabinol and cannabidiol on THC-induced responses during abstinence in morphine-dependent rats</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23795873" target="_blank">Impact of Cannabis Use during Stabilization on Methadone Maintenance Treatment</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23727505" target="_blank">Dysregulation of cannabinoid CB1 receptor and associated signaling networks in brains of cocaine addicts and cocaine-treated rodents</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15878999" target="_blank">Comparison of cannabidiol, antioxidants, and diuretics in reversing binge ethanol-induced neurotoxicity</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.sciencedirect.com/science/article/pii/S0091305713002104" target="_blank">Transdermal delivery of cannabidiol attenuates binge alcohol-induced neurodegeneration in a rodent model of an alcohol use disorder</a></strong> (ScienceDirect)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23095052" target="_blank">Cannabidiol for the treatment of cannabis withdrawal syndrome</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24342767">Cannabis use disorders are comparatively prevalent among nonwhite racial/ethnic groups and adolescents: a national</a><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24342767"> study</a> </strong>(PubMed)</li>
+</ul>
+  </div>
+  
+
+<button class="accordion">ADD/ADHD</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) is clinically proven to Treat ADD/ADHD.</p>
+<p>The web developer who built this website suffers from ADD and made this website with the help of Hempsweet&#8217;s exclusive Hemp Extract CBD oil.</p>
+<ul>
+<li><strong><a title="Searching for a Neurobiological Basis for Self-Medication Theory in ADD/ADHD" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23856832" target="_blank">Searching for a Neurobiological Basis for Self-Medication Theory in ADHD Comorbid With Substance Use Disorders</a></strong> (Pub Med)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22495620" target="_blank">Cannabidiol and clozapine reverse MK-801-induced deficits in social interaction and hyperactivity in Sprague-Dawley rats</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24093525" target="_blank">Subtypes of Attention Deficit — Hyperactivity Disorder (ADHD) and cannabis use</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24332802"><strong>Childhood and current ADHD symptom dimensions are associated with more severe cannabis outcomes in college students</strong></a> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/20520294" target="_blank">Oral delta 9-tetrahydrocannabinol improved refractory Gilles de la Tourette syndrome in an adolescent by increasing intracortical inhibition: A case report</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17879702" target="_blank">Fitness to drive in spite (because) of THC</a></strong> (PubMed)</li>
+</ul>
+  </div>
+ 
+<button class="accordion">Irritable Bowel Disease (IBS) &amp; Inflammatory Bowel Disease</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) found in all parts of the hemp plant treats Irritable and Inflammatory Bowel Disease.</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22815234" target="_blank">Cannabidiol in inflammatory bowel diseases: A brief overview</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22163000" target="_blank">Cannabidiol reduces intestinal inflammation through the control of neuroimmune axis</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/18404144" target="_blank">Clinical endocannabinoid deficiency (CECD): Can this concept explain therapeutic benefits of cannabis in migraine, fibromyalgia, irritable bowel syndrome and other treatment-resistant conditions?</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21726418" target="_blank">Cannabinoid actions at TRPV channels: Effects on TRPV3 and TRPV4 and their potential relevance to gastrointestinal inflammation</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17713029" target="_blank">Therapeutic potential of cannabinoid-based drugs</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.sciencedirect.com/science/article/pii/S0006295213000543" target="_blank">Beneficial effect of the non-psychotropic plant cannabinoid cannabigerol on experimental inflammatory bowel disease (Biochemical Pharmacology)</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/20117132" target="_blank">Cannabinoids and the gut: New developments and emerging concepts</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/16751708" target="_blank">Endocannabinoids and the gastrointestinal tract</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/18924447" target="_blank">Cannabinoids and gastrointestinal motility: Animal and human studies</a> </strong>(PubMed)</li>
+</ul>
+  </div>
+
+<button class="accordion">Multiple Sclerosis (MS)</button>
+ <div class="pannel">
+    <p>To treat multiple sclerosis symptoms: Hemp cannabidiol (CBD) plant extracts containing 5-120 milligrams by mouth daily for 2-15 weeks.</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/16317825" target="_blank">Sativex for the management of multiple sclerosis symptoms</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21456949" target="_blank">THC and CBD oromucosal spray (Sativex®) in the management of spasticity associated with multiple sclerosis</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22509985" target="_blank">Clinical efficacy and effectiveness of Sativex, a combined cannabinoid medicine, in multiple sclerosis-related spasticity</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23851307" target="_blank">Cannabidiol provides long-lasting protection against the deleterious effects of inflammation in a viral model of multiple sclerosis: A role for A2A receptors</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/18035205" target="_blank">Oromucosal delta9-tetrahydrocannabinol/cannabidiol for neuropathic pain associated with multiple sclerosis: An uncontrolled, open-label, 2-year extension trial</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22954177" target="_blank">Nabiximols in the treatment of spasticity, pain and urinary symptoms due to multiple sclerosis</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22878432" target="_blank">Sativex long-term use: An open-label trial in patients with spasticity due to multiple sclerosis</a></strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/20307378" target="_blank">A double-blind, randomized, placebo-controlled, parallel-group study of Sativex, in subjects with symptoms of spasticity due to multiple sclerosis</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17257464" target="_blank">Meta-analysis of cannabis based treatments for neuropathic and multiple sclerosis-related pain</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/16553576" target="_blank">Sativex: Clinical efficacy and tolerability in the treatment of symptoms of multiple sclerosis and neuropathic pain</a></strong> (PubMed)</li>
+
+<p><iframe width="500" height="281" src="https://web.archive.org/web/20170605231058if_/https://www.youtube.com/embed/8PMt-ikueKQ?feature=oembed" frameborder="0" allowfullscreen></iframe></p>
+</ul>
+  </div>
+
+<button class="accordion">Neurodegeneration</button>
+  <div class="pannel">
+    <p>Things look very promising for CBD to at least help prevent and possibly even treat neurodegenatrative disorders.</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19228180" target="_blank">Cannabidiol: A promising drug for neurodegenerative disorders?</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22625422" target="_blank">Cannabidiol for neurodegenerative disorders: Important new clinical applications for this phytocannabinoid?</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24012796"><strong>Transdermal delivery of cannabidiol attenuates binge alcohol-induced neurodegeneration in a rodent model of an alcohol use disorder</strong> </a>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21870037" target="_blank">Memory-rescuing effects of cannabidiol in an animal model of cognitive impairment relevant to neurodegenerative disorders</a> </strong>(PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23893294"><strong>Cannabidiol normalizes caspase 3, synaptophysin, and mitochondrial fission protein DNM1L expression levels in rats with brain iron overload: implications for neuroprotection </strong></a>(Pub Med)</li>
+</ul>
+  </div>
+
+<button class="accordion">Stroke and Traumatic Brain Injury</button>
+ <div class="pannel">
+    <p>If the effects of inflammation have already got you dealing with a stroke or you have suffered a Traumatic Brain Injury then Cannabidiol (CBD) from Hemp may be your answer.</p>
+<p>About one million people in the United States are treated in emergency rooms each year for traumatic brain injuries, resulting from traffic accidents, sports-related concussions, military injuries, and strokes. By the year 2030, according to the American Heart Association, almost 4 percent of U.S. adults will have a stroke.</p>
+<ul>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17890433" target="_blank">Cannabidiol, a nonpsychoactive Cannabis constituent, protects against myocardial ischemic reperfusion injury</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15640760" target="_blank">Cannabidiol prevents infarction via the non-CB1 cannabinoid receptor mechanism</a> </strong>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15845890" target="_blank">Cannabidiol prevents cerebral infarction via a serotonergic 5-hydroxytryptamine1A receptor-dependent mechanism</a></strong> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/22659086" target="_blank"><strong>Cannabidiol administration after hypoxia-ischemia to newborn rats reduces long-term brain injury and restores neurobehavioral function</strong> </a>(PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24532152">Protective Effects of Cannabidiol Against Hippocampal Cell Death and Cognitive Impairment Induced by Bilateral Common Carotid Artery Occlusion in Mice</a></strong> (PubMed)</li>
+<li><strong><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/17320118" target="_blank">Repeated treatment with cannabidiol but not Delta9-tetrahydrocannabinol has a neuroprotective effect without the development of tolerance</a> </strong>(PubMed)</li>
+</ul>
+</div>
+
+<button class="accordion">Anxiety, Insomnia, OCD</button>
+  <div class="pannel">
+    <p>Cannabidiol (CBD) is clinically proven to Treat Anxiety and related problems like Insomnia, Panic Attacks, and OCD.</p>
+<p>Use<em><strong> <a href="/web/20170605231058/https://hempsweet.net/product/hemp-extract-cbd-oil-250mg">Pure Kind Botanicals 250mg CBD Hemp Extract Oil</a></strong></em> daily for maintenance or our <em><strong><a href="/web/20170605231058/https://hempsweet.net/product/hemp-extract-cbd-oil-1500mg">Pure Kind Botanicals 1,500mg CBD Hemp Extract Oil</a></strong></em> for moderate to severe symptoms.</p>
+<blockquote><p>To treat sleep disorders: 20 -160 mg CBD by mouth as needed.</p></blockquote>
+<ul>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2241751/" target="_blank">PACHER P, BÁTKAI S, KUNOS G. The Endocannabinoid System as an Emerging Target of Pharmacotherapy. <i>Pharmacological reviews</i>. 2006;58(3):389-462. doi:10.1124/pr.58.3.2.</a></li>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5121237/" target="_blank">Jurkus R, Day HLL, Guimarães FS, Lee JLC, Bertoglio LJ, Stevenson CW. Cannabidiol Regulation of Learned Fear: Implications for Treating Anxiety-Related Disorders. <i>Frontiers in Pharmacology</i>. 2016;7:454. doi:10.3389/fphar.2016.00454.</a></li>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5101100/" target="_blank">Shannon S, Opila-Lehman J. Effectiveness of Cannabidiol Oil for Pediatric Anxiety and Insomnia as Part of Posttraumatic Stress Disorder: A Case Report. <i>The Permanente Journal</i>. 2016;20(4):108-111. doi:10.7812/TPP/16-005.</a></li>
+<li><a href="https://web.archive.org/web/20170605231058/https://www.ncbi.nlm.nih.gov/pubmed/21867717" target="_blank">Hsiao YT, Yi PL, Li CL, Chang FC. Effect of cannabidiol on sleep disruption induced by the repeated combination tests consisting of open field and elevated plus-maze in rats. Neuropharmacology. 2012 Jan;62(1):373-84. doi: 10.1016/j.neuropharm.2011.08.013. PubMed PMID: 21867717.</a></li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23108553" target="_blank">Multiple mechanisms involved in the large-spectrum therapeutic potential of cannabidiol in psychiatric disorders</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19839936" target="_blank">The endocannabinoid system and the treatment of mood and anxiety disorders</a>(PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/20353783" target="_blank">The endocannabinoid system and psychiatric disorders</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21693551" target="_blank">The endocannabinoid system in the regulation of emotions throughout lifespan: A discussion on therapeutic perspectives</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/21916860" target="_blank">Endocannabinoid system dysfunction in mood and related disorders</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/14583744" target="_blank">Effects of cannabidiol (CBD) on regional cerebral blood flow</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/19045957" target="_blank">The nonpsychoactive Cannabis constituent cannabidiol is a wake-inducing agent</a> (PubMed)</li>
+<li><a title="Cannabis, pain and sleep" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=Cannabis%2C+pain%2C+and+sleep%3A+lessons+from+therapeutic+clinical+trials+of+Sativex%2C+a+cannabis-based+medicine" target="_blank">Cannabis, pain, and sleep: Lessons from therapeutic clinical trials of Sativex, a cannabis-based medicine</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/23343597" target="_blank">Effects of acute systemic administration of cannabidiol on sleep-wake cycle in rats</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/15118485" target="_blank">Effect of Delta-9-tetrahydrocannabinol and cannabidiol on nocturnal sleep and early-morning behavior in young adults</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/16844117" target="_blank">Cannabidiol, a constituent of Cannabis sativa, modulates sleep in rats</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24520411">Endocannabinoid modulation of cortical up-states and NREM sleep</a> (PubMed)</li>
+<li><a href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/24121138" target="_blank">Intranodose ganglion injections of dronabinol attenuate serotonin-induced apnea in Sprague-Dawley rat</a> (PubMed)</li>
+<li><a title="CBD and obsessive compulsive disorder" href="https://web.archive.org/web/20170605231058/http://www.ncbi.nlm.nih.gov/pubmed/?term=Plasma+and+brain+pharmacokinetic+profile+of+cannabidiol+%28CBD%29%2C+cannabidivarine+%28CBDV%29%2C+%CE%94%E2%81%B9-tetrahydrocannabivarin+%28THCV%29+and+cannabigerol+%28CBG%29+in+rats+and+mice+following+oral+and+intraperitoneal+administration+and+CBD+action+on+obsessive-compulsive+behaviour" target="_blank">Plasma and brain pharmacokinetic profile of cannabidiol (CBD), cannabidivarine (CBDV), Δ⁹-tetrahydrocannabivarin (THCV) and cannabigerol (CBG) in rats and mice following oral and intraperitoneal administration and CBD action on obsessive-compulsive behaviour</a> (PubMed)</li>
+</ul>
+
+                                              </div> 
+                                                </div>
+
+  
+                                         </div>
+                                        
+    
+	
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+			
+			
+			
+			
+			<div class="section mcb-section   "  style="padding-top:0px; padding-bottom:0px; background-color:;  background-image:url(images/home_herbal_slider_bg.png); background-repeat:no-repeat; background-position:center top; background-attachment:; background-size:; -webkit-background-size:" ><div class="section_wrapper mcb-section-inner"><div class="wrap mcb-wrap one  valign-top clearfix" style="padding:40px 0px 0px 40px" ><div class="mcb-wrap-inner">
+			</div><div class="column mcb-column two-fifth column_button" style="text-align:center;"><div class="col-inner "><div><div class="ves-widget ourservice-block block "><div class="media "><div class="  " ><img src="images/icon3.png" alt="icon"></div><div class="ourservice-content "><h4>Special Offers</h4><p>all year long</p></div></div></div></div></div></div><div class="column mcb-column two-fifth column_button" style="text-align:center;"><div class="col-inner "><div><div class="ves-widget ourservice-block block "><div class="media "><div class="  " ><img src="images/icon4.png" alt="icon"></div><div class="ourservice-content "><h4>24/7 support online</h4><p>We support online 24/24 on day</p></div></div></div></div></div></div>
+			</div></div></div></div>
+
+			
+						
+						
+						
+						
+						
+						
+						
+						
+					<div id="slider" class="testimonial">
+<ul>
+	<li>
+	<div class="slider-container">
+    <h4>Gregory C.</h4>
+		<p>"I bought this for my wife. She was having anxiety. Mainly from tapering off of a narcotic medication she'd been taking for several years. She is at the end of the taper and is doing really well. I certainly attribute that to her using CBD products. She would put a dropper full under her tongue a couple times a day. We are very pleased with this product."</p>
+	</div>
+	</li>
+		<li>
+		<div class="slider-container">
+       <h4>Sandra S.</h4>
+		<p>"These drops have helped me reduce my intake of opiods,as well as helping me get good rest at night.The taste is something to get used to but empty gel caps &amp; the dropper helps."</p>
+	</div>
+	</li>
+		<li>
+		<div class="slider-container">
+       <h4>Latricia B.</h4>
+		<p>"This is a excellence product in the pass 3 years CBD has made my life worth living again"</p>
+	</div>
+	</li>
+		<li>
+		<div class="slider-container">
+      <h4>Leslie K.</h4>
+		<p>"I've used just a few drops when I feel stressed, and it has a very calming effect without making me drowsy. Nice product."</p>
+	</div>
+	</li>
+	<li>
+		<div class="slider-container">
+      <h4>Dan B.</h4>
+		<p>"Relieves my stress and anxiety."</p>
+	</div>
+	</li>
+	<li>
+		<div class="slider-container">
+      <h4>Jamie T.</h4>
+		<p>"I have COPD and it helped right away tastes bad but just for a second it's well worth it. I would highly recommend it and a great company as well."</p>
+	</div>
+	</li>
+	<li>
+		<div class="slider-container">
+      <h4>Robin H.</h4>
+		<p>"I have secondary progressive MS, and have been frustrated for many years with expensive and ineffective MS medications. With the first dose of CBD rich hemp oil, I have seen my spasticity and cramping reduced by over 90%. Smooth muscle control ( swallowing and bladder function) has improved considerably!"</p>
+	</div>
+	</li>
+	<li>
+		<div class="slider-container">
+      <h4>Christopher P.</h4>
+		<p>"I have only recently started using a low dose of CBD oil drops. I have noticed a calming effect from it and without any kind of sedative like effects you usually get from pharmaceuticals. I know it takes some time to get the right effect from CBD so I will make updates as I progress."</p>
+	</div>
+	</li>
+	<li>
+		<div class="slider-container">
+      <h4>DIANE A.</h4>
+		<p>"Using this product to help elderly parent with dementia deal with severe anxiety. It helps tremendously! I put it in glass of juice and the calming effect is obvious.</"</p>
+	</div>
+	</li>
+	<li>
+		<div class="slider-container">
+      <h4>Judith A.</h4>
+		<p>"I suffer badly from Arthritis, in my feet among other places. Feet are so necessary in life and extreme pain in feet in really nasty. So, I take pain killers. But, I do not like some of the sides of the pain killers. Then, I find cbd oil. Wish I could find the chocolate mint I found in Colorado on line, but, regardless of flavor, it works. Nothing takes the pain "away" ... that is a pipe dream, but, dull it so I can work in garden and play with 9 year old G-daughter. I am a fan! You should advertise this as an alternative to pain meds! Or, at least a daytime addition or alternative.Thank you."</p>
+	</div>
+	</li>
+	<li>
+		<div class="slider-container">
+      <h4>Gregory C.</h4>
+		<p>"I bought this for my wife. She was having anxiety. Mainly from tapering off of a narcotic medication she'd been taking for several years. She is at the end of the taper and is doing really well. I certainly attribute that to her using CBD products. She would put a dropper full under her tongue a couple times a day. We are very pleased with this product."</p>
+	</div>
+	</li>
+	<li>
+		<div class="slider-container">
+      <h4>Sandra S.</h4>
+		<p>"These drops have helped me reduce my intake of opiods,as well as helping me get good rest at night.The taste is something to get used to but empty gel caps &amp; the dropper helps."</p>
+	</div>
+	</li>
+</ul>
+</div>
+						
+					
+                   
+            </div>
+        </div>
+        <footer id="Footer" class="clearfix">
+	
+		<style>ul.twitter-widget,ul.social{height:auto;}</style>
+	<div class="widgets_wrapper" style="padding:80px 0;"><div class="container"><div class="column one-fifth">				<aside id="recent-comments-2" class="widget widget_recent_comments"><h4>Latest Tweets</h4><ul class="twitter-widget"><li><div class="tweet-text"><a href="http://www.twitter.com/DashForceNews" target="_blank">@DashForceNews</a> Yes, we are happy to take Dash.</div><div class="twitter_intents">
+<a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=867022729907625984"><i class="fa-reply"></i></a>
+<a class="retweet" href="https://twitter.com/intent/retweet?tweet_id=867022729907625984"><i class="fa-retweet"></i></a>
+<a class="favorite" href="https://twitter.com/intent/favorite?tweet_id=867022729907625984"><i class="fa-star"></i></a>
+<a class="timestamp" href="https://twitter.com/HempsweetCBD/status/867022729907625984" target="_blank">2 weeks ago</a>
+</div>
+</li><li><div class="tweet-text">RT <a href="http://www.twitter.com/votehemp" target="_blank">@votehemp</a>: Everything <a href="https://twitter.com/search?q=%23hemp&amp;src=hash" target="_blank">#hemp</a>!
+
+<a href="https://twitter.com/search?q=%23hemp&amp;src=hash" target="_blank">#hemp</a>Week <a href="https://twitter.com/search?q=%23VoteHemp&amp;src=hash" target="_blank">#VoteHemp</a> <a href="https://t.co/73M8qBEgwP" target="_blank">https://t.co/73M8qBEgwP</a></div><div class="twitter_intents">
+<a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=863788230696513536"><i class="fa-reply"></i></a>
+<a class="retweet" href="https://twitter.com/intent/retweet?tweet_id=863788230696513536"><i class="fa-retweet"></i></a>
+<a class="favorite" href="https://twitter.com/intent/favorite?tweet_id=863788230696513536"><i class="fa-star"></i></a>
+<a class="timestamp" href="https://twitter.com/HempsweetCBD/status/863788230696513536" target="_blank">3 weeks ago</a>
+</div>
+</li></ul></aside></div><div class="column one-fifth" style="margin-left:100px;"><aside id="text-3" class="widget widget_text">			<div class="textwidget"><h4>Quick Links</h4><ul style="line-height: 40px; font-weight: 700;">
+<li>
+                                                <a href="index.html"><span>Home</span></a>
+                                            </li>
+											
+                                            <li>
+                                                <a href="shop.html"><span>Shop</span></a>
+												
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="hempxylitol.html"><span>Xlitol from Hemp</span></a>
+                                            </li>
+                                            <li>
+                                                <a href="contact.html"><span>Contact</span></a>
+                                            </li>
+</ul></div>
+		</aside></div><div class="column one-fifth" style="margin-left:100px;"><aside id="text-4" class="widget widget_text">			<div class="textwidget"><h4>Shop</h4><ul style="line-height: 40px; font-weight: 700;">
+<li><a href="topicals.html">PureKind</a></li>
+												<li><a href="medterra.html">MedTerra</a></li>
+												<li><a href="oraloils.html">Oral Oils</a></li>
+												<li><a href="bodybutter.html">Body Butter</a></li>
+												<li><a href="topicalrelief.html">Topical Relief</a></li>
+												<li><a href="capsules.html">CBD Capsules</a></li>
+												<li><a href="vapouriser.html">CBD Vaporizer</a></li>
+												<li><a href="isolate.html">CBD Isolate</a></li>
+</ul></div>
+		</aside></div><div class="column one-fifth"><aside id="text-6" class="widget widget_text">			<div class="textwidget"><p>Follow us:</p>
+
+<a href="#" class="icon_bar  icon_bar_small" ><span class="t"><i class="icon-facebook"></i></span><span class="b"><i class="icon-facebook"></i></span></a>
+
+<a href="#" class="icon_bar  icon_bar_small" ><span class="t"><i class="icon-gplus"></i></span><span class="b"><i class="icon-gplus"></i></span></a>
+
+<a href="#" class="icon_bar  icon_bar_small" ><span class="t"><i class="icon-twitter"></i></span><span class="b"><i class="icon-twitter"></i></span></a>
+</div>
+		</aside></div></div>
+		<div class="clearfix"></div>
+		</div>
+
+		
+		<div class="footer_copy" >
+			<div class="container" >
+				<div class="column one" >
+
+					<a id="back_to_top" class="button button_left button_js" href=""><span class="button_icon"><i class="icon-up-open-big"></i></span></a>					
+					<!-- Copyrights -->
+					<div class="copyright">
+						Proudly powered by @  <a target="_blank" rel="nofollow" href="http://dsvinfosolutions.com">DSV Infosolutions Pvt. Ltd</a>					</div>
+					
+					<ul class="social"></ul>							
+				</div>
+			</div>
+		</div>
+	
+		
+	
+	
+	
+</footer>
+    </div>
+
+    <!-- JS -->
+
+    <script src="js/jquery-2.1.4.min.js"></script>
+
+    
+
+    <script src="js/mfn.menu.js"></script>
+    <script src="js/jquery.plugins.js"></script>
+    <script src="js/jquery.jplayer.min.js"></script>
+    <script src="js/animations/animations.js"></script>
+    <script src="js/scripts.js"></script>
+    
+    
+
+    <script id="mfn-dnmc-retina-js">
+        jQuery(window).load(function() {
+            var retina = window.devicePixelRatio > 1 ? true : false;
+            if (retina) {
+                var retinaEl = jQuery("#logo img.logo-main");
+                var retinaLogoW = retinaEl.width();
+                var retinaLogoH = retinaEl.height();
+                retinaEl.attr("src", "content/herbal/images/retina-herbal.png").width(retinaLogoW).height(retinaLogoH);
+                var stickyEl = jQuery("#logo img.logo-sticky");
+                var stickyLogoW = stickyEl.width();
+                var stickyLogoH = stickyEl.height();
+                stickyEl.attr("src", "content/herbal/images/retina-herbal.png").width(stickyLogoW).height(stickyLogoH);
+                var mobileEl = jQuery("#logo img.logo-mobile");
+                var mobileLogoW = mobileEl.width();
+                var mobileLogoH = mobileEl.height();
+                mobileEl.attr("src", "content/herbal/images/retina-herbal.png").width(mobileLogoW).height(mobileLogoH);
+            }
+        });
+    </script>
+	
+  <script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+</body>
+
+</html>
