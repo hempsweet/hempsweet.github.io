@@ -43,8 +43,8 @@ img.logo-sticky.scale-with-grid {
 }
 label {
 	color: #1c4e2a !important;
-    font-size: 35px !important;
-    line-height: 40px !important;
+    font-size: 25px !important;
+    line-height: 25px !important;
     margin-bottom: 15px !important;
     padding-bottom: 15px !important;
     font-family: "Caudex", Arial, Tahoma, sans-serif !important;
@@ -75,5 +75,13 @@ a.fixed-nav.fixed-nav-next {
 #Subheader {
     /* top: 60px; */
 	top:0px !important;
+    position: relative;
+}
+#centeredmenu {
+    float: left;
+    width: 100%;
+    /* background: #fff; */
+	background: rgba(255, 255, 255, 0) !important;
+    overflow: hidden;
     position: relative;
 }
