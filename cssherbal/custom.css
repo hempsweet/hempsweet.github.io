@@ -41,14 +41,7 @@ img.logo-sticky.scale-with-grid {
 .top_bar_left.clearfix {
     max-height: 50px !important;
 }
-label {
-	color: #1c4e2a !important;
-    font-size: 25px !important;
-    line-height: 25px !important;
-    margin-bottom: 15px !important;
-    padding-bottom: 15px !important;
-    font-family: "Caudex", Arial, Tahoma, sans-serif !important;
-}
+
 
 label, legend {
     display: block;
@@ -84,4 +77,12 @@ a.fixed-nav.fixed-nav-next {
 	background: rgba(255, 255, 255, 0) !important;
     overflow: hidden;
     position: relative;
+}
+label {
+	color: #1c4e2a !important;
+    font-size: 25px !important;
+    line-height: 25px !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 15px !important;
+    font-family: "Caudex", Arial, Tahoma, sans-serif !important;
 }
