@@ -80,9 +80,13 @@ a.fixed-nav.fixed-nav-next {
 }
 label {
 	color: #1c4e2a !important;
-    font-size: 25px !important;
-    line-height: 25px !important;
+    font-size: 25px ;
+    line-height: 25px ;
     margin-bottom: 15px !important;
     padding-bottom: 15px !important;
     font-family: "Caudex", Arial, Tahoma, sans-serif !important;
+}
+label.fc-form-label.fc-form-label--shipping-rate {
+    font-size: 14px !important;
+    line-height: 22px !important;
 }
