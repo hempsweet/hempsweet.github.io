@@ -38,9 +38,6 @@ img.logo-sticky.scale-with-grid {
     line-height: 60px;
     padding: 10px 0px !important;
 }
-.top_bar_left.clearfix {
-    max-height: 50px !important;
-}
 
 
 label, legend {
@@ -90,3 +87,4 @@ label.fc-form-label.fc-form-label--shipping-rate {
     font-size: 14px !important;
     line-height: 22px !important;
 }
+
