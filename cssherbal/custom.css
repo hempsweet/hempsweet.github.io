@@ -88,3 +88,21 @@ label.fc-form-label.fc-form-label--shipping-rate {
     line-height: 22px !important;
 }
 
+section.page-header h1 {
+	/*color: #414141; */
+    color: #fff !important;
+    
+}
+#fc .fc-address-entry .fc-postal-code-entry__submit button {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding-bottom: 4px;
+    margin-left: 13px !important;
+    line-height: 1.2 !important;
+}
+h5.fc-transaction__ui__header {
+    letter-spacing: 1px !important;
+}
+#fc h5 {
+	letter-spacing: 1px !important;
+}
