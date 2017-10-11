@@ -186,10 +186,10 @@
                                                   <input id="price" type="hidden" name="price" value="0"/>
                                                    <label>Manna CBD Body Butter</label>
 
-                                                       <label style="color:#cb9734 !important;">$45.95 – $69.95</label>
+                                                       <label id="value" style="color:#cb9734 !important;">$45.95 – $69.95</label>
 
                                                              This new topical cream is very smooth and deeply enriching. The yummy ingredients include mango butter, MCT oil, organic avocado oil, organic jojoba oil, organic apricot oil, vitamin E oil and our premium full spectrum hemp extract (including 220 mg CBD). This is quite possibly the best moisturizing cream on the planet.
-                                                          <br><br> <p id="value" style="font-size:20px; color:#cb9734 !important;"></p>	Size:
+                                                          <br><br> 	Size:
                                                  <select id="size" class="" name="attribute_size" data-attribute_name="attribute_size" data-show_option_none="yes"><option value="">Choose an option</option><option value="2 oz" class="attached enabled">2 oz</option><option value="4 oz" class="attached enabled">4 oz</option></select>Scent: <select id="scent" class="" name="attribute_scent" data-attribute_name="attribute_scent" data-show_option_none="yes"><option value="">Choose an option</option><option value="Unscented" class="attached enabled">Unscented</option><option value="Lemongrass" class="attached enabled">Lemongrass</option></select>
                                                  
                                                 											 
@@ -345,11 +345,12 @@ else
 {
 	price= 69.95;
 }
+var amount='$ '+price;
 
-        $('#price').html(price );
-		$('#value').html(price );
-        $('#price').val(price);
-		$('#value').val(price);
+        $('#price').html(amount );
+		$('#value').html(amount );
+        $('#price').val(amount);
+		$('#value').val(amount);
 
     });
 });

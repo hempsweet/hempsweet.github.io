@@ -133,12 +133,12 @@
 											<div class="photo"><img width="80" height="80" src="images/CBD-Oil-250.png" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_herbal_product4"  />
 											</div>
 											<div class="desc">
-												<h6>CBD Oil 250mg</h6><span class="date"><i class="icon-clock"></i></span>
+												<h6>CBD Oil </h6><span class="date"><i class="icon-clock"></i></span>
 											</div></a><a class="fixed-nav fixed-nav-next " href="product.html"><span class="arrow"><i class="icon-right-open-big"></i></span>
 											<div class="photo"><img width="80" height="80" src="images/CBD-Oil-250.png" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_herbal_product2"  />
 											</div>
 											<div class="desc">
-												<h6>CBD Oil 250mg</h6><span class="date"><i class="icon-clock"></i></span>
+												<h6>CBD Oil </h6><span class="date"><i class="icon-clock"></i></span>
 											</div></a>
                                         
                                         <div class="product_wrapper clearfix" style="padding-top:20px;">
@@ -165,8 +165,8 @@
                                                         </div>
                                                         <div class="image_frame scale-with-grid" ontouchstart="this.classList.toggle('hover');">
                                                             <div class="image_wrapper">
-                                                                <a href="images/home_herbal_product5.jpg" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto[product-gallery]">
-                                                                    <div class="mask"></div><img width="180" height="180" src="images/pure.jpg" class="attachment-shop_thumbnail size-shop_thumbnail" alt="home_herbal_product5" title="home_herbal_product5" caption="" url="images/CBD-Oil-250.png" />
+                                                                <a href="images/CBD-Oil-1500.png" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto[product-gallery]">
+                                                                    <div class="mask"></div><img width="180" height="180" src="images/CBD-Oil-1500.png" class="attachment-shop_thumbnail size-shop_thumbnail" alt="home_herbal_product5" title="home_herbal_product5" caption="" url="images/CBD-Oil-1500.png" />
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -176,15 +176,22 @@
 											
 											<form action="https://hempsweet.foxycart.com/cart" method="post" accept-charset="utf-8">
 
-                                               <input type="hidden" name="name" value="CBD Oil 250mg" />
-                                                  <input type="hidden" name="price" value="44.95" />
-                                                   <label>CBD Oil 250mg</label>
+                                               <input type="hidden" name="name" value="CBD Oil " />
+                                                  <input id="price" type="hidden" name="price" value="0"/>
+                                                   <label>CBD Oil </label>
 
-                                                       <label style="color:#cb9734 !important;">$44.95</label>
+                                                       <label id="value" style="color:#cb9734 !important;">$44.95</label>
 
                                                              PHemp extract-infused MCT Oil, 8.3 mg/ml CBD, 1-oz (30 ml) dropper bottle
                                                           <br><br>   
-                                               <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                               Size:
+                                                 <select id="size" class="" name="attribute_size" data-attribute_name="attribute_size" data-show_option_none="yes"><option value="">Choose an option</option><option value="250 mg" selected="selected">250 mg</option>
+                            
+                              <option value="1500 mg">1500 mg</option>
+                            
+                              <option value="3000 mg">3000 mg</option>
+                            
+                              </select>
  
                                           <input type="submit" value="Buy Now" class="submit" />
                                                </form>
@@ -324,6 +331,34 @@
                 mobileEl.attr("src", "images/retina-herbal.png").width(mobileLogoW).height(mobileLogoH);
             }
         });
+		jQuery(document).ready(function(){
+    jQuery('#size').change(function(){
+        
+var size=jQuery(this).val();
+
+var price=0;
+if(size=='250 mg')
+{
+	price= 44.95;
+}
+else if(size=='1500 mg')
+{
+	price= 149.95;
+}
+
+else 
+{
+	price= 269.95;
+}
+var amount='$ '+price;
+
+        $('#price').html(amount );
+		$('#value').html(amount );
+        $('#price').val(amount);
+		$('#value').val(amount);
+
+    });
+});
     </script>
 </body>
 

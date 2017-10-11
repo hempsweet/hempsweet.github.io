@@ -116,7 +116,7 @@
             <div id="Subheader" style="padding:100px 0;">
                 <div class="container">
                     <div class="column one">
-                        <h2 class="title">CBD GEL CAPSULES (25mg/pill)</h2>
+                        <h2 class="title">CBD GEL CAPSULES</h2>
                     </div>
                 </div>
             </div>
@@ -133,12 +133,12 @@
 											<div class="photo"><img width="80" height="80" src="images/CBD_25mg_ProductBottle_HighResolution_v001_1024x1024.png" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_herbal_product4"  />
 											</div>
 											<div class="desc">
-												<h6>CBD GEL CAPSULES (25mg/pill)</h6><span class="date"><i class="icon-clock"></i></span>
+												<h6>CBD GEL CAPSULES</h6><span class="date"><i class="icon-clock"></i></span>
 											</div></a><a class="fixed-nav fixed-nav-next " href=""><span class="arrow"><i class="icon-right-open-big"></i></span>
 											<div class="photo"><img width="80" height="80" src="images/CBD_25mg_ProductBottle_HighResolution_v001_1024x1024.png" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_herbal_product2"  />
 											</div>
 											<div class="desc">
-												<h6>CBD GEL CAPSULES (25mg/pill)</h6><span class="date"><i class="icon-clock"></i></span>
+												<h6>CBD GEL CAPSULES</h6><span class="date"><i class="icon-clock"></i></span>
 											</div></a>
                                         
                                         <div class="product_wrapper clearfix" style="padding-top:20px;">
@@ -158,15 +158,15 @@
                                                     <div class="thumbnails columns-3" style="padding-top:20px;">
                                                         <div class="image_frame scale-with-grid" ontouchstart="this.classList.toggle('hover');">
                                                             <div class="image_wrapper">
-                                                                <a href="images/CBD_25mg_ProductBottle_HighResolution_v001_1024x1024.png" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto[product-gallery]">
-                                                                    <div class="mask"></div><img width="180" height="180" src="images/CBD_25mg_ProductBottle_HighResolution_v001_1024x1024.png" class="attachment-shop_thumbnail size-shop_thumbnail" alt="home_herbal_product2" title="home_herbal_product2" caption="" url="images/CBD_25mg_ProductBottle_HighResolution_v001_1024x1024.png" />
+                                                                <a href="images/CBD_50mg_ProductBottle_v001_1024x1024.png" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto[product-gallery]">
+                                                                    <div class="mask"></div><img width="180" height="180" src="images/CBD_50mg_ProductBottle_v001_1024x1024.png" class="attachment-shop_thumbnail size-shop_thumbnail" alt="home_herbal_product2" title="home_herbal_product2" caption="" url="images/CBD_50mg_ProductBottle_v001_1024x1024.png" />
                                                                 </a>
                                                             </div>
                                                         </div>
                                                         <div class="image_frame scale-with-grid" ontouchstart="this.classList.toggle('hover');">
                                                             <div class="image_wrapper">
-                                                                <a href="images/CBD_25mg_ProductBottle_HighResolution_v001_1024x1024.png" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto[product-gallery]">
-                                                                    <div class="mask"></div><img width="180" height="180" src="" class="attachment-shop_thumbnail size-shop_thumbnail" alt="home_herbal_product5" title="home_herbal_product5" caption="" url="images/CBD_25mg_ProductBottle_HighResolution_v001_1024x1024.png" />
+                                                                <a href="images/CBD_50mg_ProductBottle_v001_1024x1024.png" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto[product-gallery]">
+                                                                    <div class="mask"></div><img width="180" height="180" src="" class="attachment-shop_thumbnail size-shop_thumbnail" alt="home_herbal_product5" title="home_herbal_product5" caption="" url="images/CBD_50mg_ProductBottle_v001_1024x1024.png" />
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -176,17 +176,21 @@
 											
 											<form action="https://hempsweet.foxycart.com/cart" method="post" accept-charset="utf-8">
 
-                                               <input type="hidden" name="name" value="CBD GEL CAPSULES (25mg/pill)" />
-                                                  <input type="hidden" name="price" value="59.00" />
-                                                   <label>CBD GEL CAPSULES (25mg/pill)</label>
+                                               <input type="hidden" name="name" value="CBD GEL CAPSULES" />
+                                                  <input id="price" type="hidden" name="price" value="0"/>
+                                                   <label>CBD GEL CAPSULES</label>
 
-                                                       <label style="color:#cb9734 !important;">$59.00</label>
+                                                       <label id="value" style="color:#cb9734 !important;">$64.95</label>
 
                                                              Medterra's CBD Gel Capsules are made with either 25mg or 50mg of CBD suspended in organic MCT Oil. Our CBD Capsules can be taken morning or night for fast and easy relief.
 
                                                                 
                                                           <br><br>   
-                                               <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                               <select id="size" class="" name="attribute_size" data-attribute_name="attribute_size" data-show_option_none="yes"><option value="">Choose an option</option><option value="25 mg" selected="selected">25 mg</option>
+                            
+                              <option value="50 mg">50 mg</option>
+                            
+                              </select>
  
                                           <input type="submit" value="Buy Now" class="submit" />
                                                </form>
@@ -328,6 +332,30 @@
                 mobileEl.attr("src", "images/retina-herbal.png").width(mobileLogoW).height(mobileLogoH);
             }
         });
+		jQuery(document).ready(function(){
+    jQuery('#size').change(function(){
+        
+var size=jQuery(this).val();
+
+var price=0;
+if(size=='25 mg')
+{
+	price= 64.95;
+}
+
+else 
+{
+	price= 99.95;
+}
+var amount='$ '+price;
+
+        $('#price').html(amount );
+		$('#value').html(amount );
+        $('#price').val(amount);
+		$('#value').val(amount);
+
+    });
+});
     </script>
 </body>
 

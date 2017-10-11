@@ -118,7 +118,7 @@
             <div id="Subheader" style="padding:100px 0;">
                 <div class="container">
                     <div class="column one">
-                        <h2 class="title">CBD VAPORIZER - ALL NATURAL INGREDIENTS (125gm)</h2>
+                        <h2 class="title">CBD VAPORIZER - ALL NATURAL INGREDIENTS</h2>
                     </div>
                 </div>
             </div>
@@ -135,12 +135,12 @@
 											<div class="photo"><img width="80" height="80" src="images/cbd-vaporizer_400x400.jpg" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_herbal_product4"  />
 											</div>
 											<div class="desc">
-												<h6>CBD VAPORIZER - ALL NATURAL INGREDIENTS (125gm)</h6><span class="date"><i class="icon-clock"></i></span>
+												<h6>CBD VAPORIZER - ALL NATURAL INGREDIENTS</h6><span class="date"><i class="icon-clock"></i></span>
 											</div></a><a class="fixed-nav fixed-nav-next " href=""><span class="arrow"><i class="icon-right-open-big"></i></span>
 											<div class="photo"><img width="80" height="80" src="images/cbd-vaporizer_400x400.jpg" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_herbal_product2"  />
 											</div>
 											<div class="desc">
-												<h6>CBD VAPORIZER - ALL NATURAL INGREDIENTS (125gm)</h6><span class="date"><i class="icon-clock"></i></span>
+												<h6>CBD VAPORIZER - ALL NATURAL INGREDIENTS</h6><span class="date"><i class="icon-clock"></i></span>
 											</div></a>
                                         
                                         <div class="product_wrapper clearfix" style="padding-top:20px;">
@@ -178,17 +178,39 @@
 											
 											<form action="https://hempsweet.foxycart.com/cart" method="post" accept-charset="utf-8">
 
-                                               <input type="hidden" name="name" value="CBD VAPORIZER - ALL NATURAL INGREDIENTS (125gm)" />
-                                                  <input type="hidden" name="price" value="35.00" />
-                                                   <label>CBD VAPORIZER - ALL NATURAL INGREDIENTS (125gm)</label>
+                                               <input type="hidden" name="name" value="CBD VAPORIZER - ALL NATURAL INGREDIENTS "/>
+                                                  <input id="price" type="hidden" name="price" value="0"/>
+                                                   <label>CBD VAPORIZER - ALL NATURAL INGREDIENTS</label>
 
-                                                       <label style="color:#cb9734 !important;">$35.00</label>
+                                                       <label id="value" style="color:#cb9734 !important;">$35.00</label>
 
                                                              Using our CBD isolate and MCT oil as a base, we have created a one-step solution for those needing a high-quality CBD instantly. Medterra offers the option of  a 125mg CBD or 200mg CBD vaporizer in all-natural tangerine and lemon flavors.  The vaporizer is pre-filled and can be used right out of the box.
 
                                                                 
                                                           <br><br>   
-                                               <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                               <select id="size" class="" name="attribute_size" data-attribute_name="attribute_size" data-show_option_none="yes"><option value="">Choose an option</option><option value="125 mg" selected="selected">125 mg</option>
+                            
+                              <option value="200 mg">200 mg</option>
+							  </select>
+							  <select class="single-option-selector single-option-selector-product-template product-form__input" id="SingleOptionSelector-1" data-index="option2">
+                            
+                              <option value="Lemon" selected="selected">Lemon</option>
+                            
+                              <option value="Tangerine">Tangerine</option>
+                            
+                              <option value="Blueberry">Blueberry</option>
+                            
+                              <option value="Passion Fruit">Passion Fruit</option>
+                            
+                              <option value="Watermelon">Watermelon</option>
+                            
+                              <option value="Grape">Grape</option>
+                            
+                              <option value="Strawberry">Strawberry</option>
+                            
+                              <option value="Apple">Apple</option>
+                            
+                          </select>
  
                                           <input type="submit" value="Buy Now" class="submit" />
                                                </form>
@@ -330,6 +352,30 @@ Ingredients: MCT Oil, 99%+ CBD Isolate
                 mobileEl.attr("src", "images/retina-herbal.png").width(mobileLogoW).height(mobileLogoH);
             }
         });
+		jQuery(document).ready(function(){
+    jQuery('#size').change(function(){
+        
+var size=jQuery(this).val();
+
+var price=0;
+if(size=='125 mg')
+{
+	price= 35.00;
+}
+
+else 
+{
+	price= 45.00;
+}
+var amount='$ '+price;
+
+        $('#price').html(amount );
+		$('#value').html(amount );
+        $('#price').val(amount);
+		$('#value').val(amount);
+
+    });
+});
     </script>
 </body>
 

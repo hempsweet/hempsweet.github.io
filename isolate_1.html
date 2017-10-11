@@ -133,12 +133,12 @@
 											<div class="photo"><img width="80" height="80" src="images/medterra-99_400x400.jpg" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_herbal_product4"  />
 											</div>
 											<div class="desc">
-												<h6>MED99+ CBD ISOLATE(1gm)</h6><span class="date"><i class="icon-clock"></i></span>
+												<h6>MED99+ CBD ISOLATE</h6><span class="date"><i class="icon-clock"></i></span>
 											</div></a><a class="fixed-nav fixed-nav-next " href=""><span class="arrow"><i class="icon-right-open-big"></i></span>
 											<div class="photo"><img width="80" height="80" src="images/medterra-99_400x400.jpg" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_herbal_product2"  />
 											</div>
 											<div class="desc">
-												<h6>MED99+ CBD ISOLATE(1gm)</h6><span class="date"><i class="icon-clock"></i></span>
+												<h6>MED99+ CBD ISOLATE</h6><span class="date"><i class="icon-clock"></i></span>
 											</div></a>
                                         
                                         <div class="product_wrapper clearfix" style="padding-top:20px;">
@@ -176,17 +176,24 @@
 											
 											<form action="https://hempsweet.foxycart.com/cart" method="post" accept-charset="utf-8">
 
-                                               <input type="hidden" name="name" value="MED99+ CBD ISOLATE(1gm)" />
-                                                  <input type="hidden" name="price" value="35.00" />
-                                                   <label>MED99+ CBD ISOLATE(1gm)</label>
+                                               <input type="hidden" name="name" value="MED99+ CBD ISOLATE" />
+                                                  <input id="price" type="hidden" name="price" value="0"/>
+                                                   <label>MED99+ CBD ISOLATE</label>
 
-                                                       <label style="color:#cb9734 !important;">$35.00</label>
+                                                       <label id="value" style="color:#cb9734 !important;">$35.00</label>
 
                                                              Medterra’s Med99 is the industry’s highest form of CBD isolate. Manufactured within 48 hours of harvest to ensure the freshest and most stable CBD isolate. Derived from US grown hemp, our CBD Isolate is one of the purest isolates available. For Medterra, consistency is not a goal, but a requirement. Each order of our isolate will provide the same consistent, high quality product time and time again.
 
                                                                 
                                                           <br><br>   
-                                               <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                               Size:
+                                                 <select id="size" class="" name="attribute_size" data-attribute_name="attribute_size" data-show_option_none="yes"><option value="">Choose an option</option><option value="1 mg" selected="selected">1 mg</option>
+                            
+                              <option value="10 mg">10 mg</option>
+                            
+                              <option value="50 mg">50 mg</option>
+                            
+                              <option value="100 mg">100 mg</option></select>
  
                                           <input type="submit" value="Buy Now" class="submit" />
                                                </form>
@@ -328,6 +335,37 @@ View Lab Testing Results of Med99+ CBD Isolate for purity!
                 mobileEl.attr("src", "images/retina-herbal.png").width(mobileLogoW).height(mobileLogoH);
             }
         });
+		jQuery(document).ready(function(){
+    jQuery('#size').change(function(){
+        
+var size=jQuery(this).val();
+
+var price=0;
+if(size=='1 mg')
+{
+	price= 35.00;
+}
+else if(size=='10 mg')
+{
+	price= 300.00;
+}
+else if(size=='50 mg')
+{
+	price= 1250.00;
+}
+else 
+{
+	price= 2000.00;
+}
+var amount='$ '+price;
+
+        $('#price').html(amount );
+		$('#value').html(amount );
+        $('#price').val(amount);
+		$('#value').val(amount);
+
+    });
+});
     </script>
 </body>
 
