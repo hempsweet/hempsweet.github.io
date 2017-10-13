@@ -106,3 +106,34 @@ h5.fc-transaction__ui__header {
 #fc h5 {
 	letter-spacing: 1px !important;
 }
+
+#testimonials {
+    background-color: #fff;
+}
+.fa-stack-2x {
+    display: none;
+    font-size: 2em;
+}
+.fa-stack-1x {
+    display: none;
+    line-height: inherit;
+}
+#testimonials .testimonials-list {
+    /*margin-top: 20px;*/
+    /* margin-bottom: 70px; */
+	margin-bottom:0px;
+}
+.fa-stack {
+    position: relative;
+    display: inline-block;
+    width: 2em;
+    /* height: 2em; */
+	height:0em;
+    line-height: 2em;
+    vertical-align: middle;
+}
+#testimonials .testimonials-list .slick-dots {
+    height: 0px !important;
+    bottom: -40px;
+    text-align: center;
+}
